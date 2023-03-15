@@ -1,0 +1,124 @@
+<html>
+  <%- await include("partials/head") %>
+  <body>
+    <div>
+      <%- await include("partials/navbar") %>
+      <div class="bg-darkblue">
+        <% const member = guild.members.cache.get(user.id) %>
+        <div class="tickets">
+          <div class="transcriptList">
+            <div class="container px-0">
+              <h3 class="mt-5 text-light text-center text-md-start"><%= bot.language.dashboard.tickets_list %></h3>
+            </div>
+            <div class="container mt-4">
+              <div class="d-flex row statsBox py-3 px-2">
+                <div class="col-12 scrollbarSettings">
+                  <div class='py-2 px-2 rounded-1' style="overflow-y: scroll; height: 10rem; background-color: rgba(22,33,62, 0.5);">
+                    <% const allTickets = (await bot.db.all()).filter((i) => i.id.startsWith("ticketData_")) || [] %> 
+                    <% if(allTickets.length > 0) { %>
+                      <% for(const ch of allTickets) { %>
+                        <% const closeBttn = bot.cmdConfig.close; %>
+                        <% const ticketName = guild.channels.cache.get(ch.id.split("_")[1]) %>
+                        <% if(ticketName) { %>
+                          <div>
+                            <div class="row d-flex align-items-center px-0 px-md-2 w-100">
+                              <div class="col-10 col-md-6">
+                                <i class="fa-solid fa-hashtag text-light fa-1x ps-3"></i><span class="text-light ps-2"><%= ticketName.name %></span>
+                              </div>
+                              <div class="actions col-2 col-md-6 d-flex justify-content-end">
+                                <a href="/ticketing/<%= ch.id.split(`_`)[1] %>">
+                                  <i class="fa-solid fa-eye text-light me-2 me-md-3" style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    data-bs-title="View Ticket"></i>
+                                </a>
+                                <% if((closeBttn.roles.some((r) => member.roles.cache.has(r)) || closeBttn.permissions.some((p) => member.permissions.has(p))) || (closeBttn.permissions.length == 0 && closeBttn.roles.length == 0) || member.permissions.has("Administrator")) { %>
+                                  <a>
+                                    <i id="closeTicket" data-channel="<%= ch.id.split(`_`)[1] %>" class="fa-solid fa-lock text-light" style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top"
+                                      data-bs-title="Close Ticket"></i>
+                                  </a>
+                                <% } %>
+                              </div>
+                              <hr style="color: #404e60; margin-top: 0.4rem; margin-bottom: 0.4rem;">
+                            </div>
+                          </div>
+                        <% } %> 
+                      <% } %>
+                    <% } else { %>
+                      <div class="text-center align-items-center w-100">
+                        <span class="text-light fw-bold"><%= bot.language.dashboard.no_tickets %></span>
+                      </div>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="transcriptList">
+            <div class="container px-0">
+              <h3 class="mt-5 text-light text-center text-md-start"><%= bot.language.dashboard.transcripts_list %></h3>
+            </div>
+            <div class="container mt-4">
+              <div class="d-flex row statsBox py-3 px-2">
+                <div class="col-12 scrollbarSettings">
+                  <div class='py-2 px-2 rounded-1' style="overflow-y: scroll; height: 10rem; background-color: rgba(22,33,62, 0.5);">
+                    <% const transcriptList = transcripts %> 
+                    <% if(transcriptList.length > 0) { %>
+                      <% for(const transcript of transcriptList ) { %>
+                        <% const transcriptCode = (await bot.db.get(`transcript_${transcript}`)) || "N/A" %>
+                        <div>
+                          <div class="row d-flex align-items-center px-0 px-md-2 w-100">
+                            <div class="col-10 col-md-6">
+                              <i class="fa-solid fa-hashtag text-light fa-1x ps-3"></i><span class="text-light ps-2">transcript-<%= transcript %></span>
+                            </div>
+                            <div class="actions col-2 col-md-6 d-flex justify-content-end">
+                              <a href="/transcripts/<%= transcript %>">
+                                <i class="fa-solid fa-eye text-light me-2 me-md-3" style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View Transcript"></i>
+                              </a>
+                              <a>
+                                <i class="fa-solid fa-magnifying-glass text-light me-2 me-md-3" style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top"
+                                  data-bs-title="Transcript Code: <%= transcriptCode %>"></i>
+                              </a>
+                              <a href="/transcripts/<%= transcript %>/download">
+                                <i class="fa-solid fa-download text-light" style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download Transcript"></i>
+                              </a>
+                            </div>
+                            <hr style="color: #404e60; margin-top: 0.4rem; margin-bottom: 0.4rem;">
+                          </div>
+                        </div>
+                      <% } %> 
+                    <% } else { %>
+                      <div class="text-center align-items-center w-100">
+                        <span class="text-light fw-bold"><%= bot.language.dashboard.no_transcripts %></span>
+                      </div>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const sidebarBttn = document.querySelector(".ticketing");
+    sidebarBttn.classList.add("active");
+
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+    const allClose = document.querySelectorAll("#closeTicket");
+    allClose.forEach((e) => {
+      e.addEventListener("click", (event) => {
+        const channel = $(e).attr("data-channel");
+
+        $.ajax({
+          url: "/ticketing/" + channel + "/close",
+          type: "post",
+        }).then(() => {
+          toastr.success("Ticket have been closed, reloading.");
+          setTimeout(() => location.reload(), 5000);
+        });
+      })
+    })
+  </script>
+</html>

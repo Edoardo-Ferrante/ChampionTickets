@@ -1,0 +1,31 @@
+{
+  "name": "champion-tickets",
+  "version": "1.7.2",
+  "description": "Discord Tickets Bot perfect for any type of Server.",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "latest",
+    "cron": "^2.1.0",
+    "chalk": "^4.1.2",
+    "cookie-parser": "^1.4.6",
+    "discord.js": "^14.7.1",
+    "ejs": "^3.1.8",
+    "enmap": "^5.3.1",
+    "express": "latest",
+    "form-data": "^4.0.0",
+    "hastebin-gen": "^2.0.5",
+    "jsdom": "latest",
+    "jsonwebtoken": "latest",
+    "mathjs": "latest",
+    "paypal-rest-sdk": "latest",
+    "quick.db": "^9.0.5",
+    "yaml": "^2.1.1"
+  },
+  "engines": {
+    "node": ">=16.9.0"
+  }
+}

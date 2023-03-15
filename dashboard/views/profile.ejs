@@ -1,0 +1,135 @@
+<html>
+  <%- await include("partials/head") %>
+  <body>
+    <div>
+      <%- await include("partials/navbar") %>
+      <div class="bg-darkblue">
+        <div class="profile">
+          <% const member = guild.members.cache.get(user.id) %>
+          <div class="container px-0">
+            <h3 class="mt-5 text-light text-center text-md-start"><%= bot.language.dashboard.profile  %> </h3>
+          </div>
+          <div class="container mt-4 mb-5">
+            <div class="d-flex row statsBox py-3 px-2">
+              <div class="p-4">
+                <div class="d-flex flex-column">
+                  <div class="d-inline d-md-flex mb-4">
+                    <% if(user.avatar.startsWith("a_")) { %>
+                      <img class="rounded-2" height="128px" src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.gif?size=1024" alt="">
+                    <% } else { %>
+                      <img class="rounded-2" height="128px" src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.webp?size=1024" alt="">
+                    <% } %>
+                    <div class="ms-md-3">
+                      <p class="text-light fw-semibold fs-5 mb-0"><%= user.username %>#<%= user.discriminator %></p>
+                      <p style="font-size: 13px; color: rgb(107 114 128);"><%= user.id %> </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="d-flex flex-column">
+                      <div class="col-12 scrollbarSettings">
+                        <% const memberRoles = [...member.roles.cache.values()].sort((a, b) => b.rawPosition - a.rawPosition).map((r) => r) %> 
+                        <div class='py-2 px-2 rounded-1' style="overflow-x: hidden; overflow-y: scroll; height: 10rem; background-color: rgba(22,33,62, 0.5);">
+                          <div class="d-flex row">
+                            <% for(const role of memberRoles) { %>
+                              <div class="col-md-4 mb-2">
+                                <div class="d-flex rounded-3 align-items-center px-3 bg-darkblue">
+                                  <span data-color="<%= role.color %>" class="roleColor" style="border-radius: 100%; height: 15px; width: 15px;" ></span>
+                                  <span class="px-2 py-1 text-light"><%= role.name %></span>
+                                </div>
+                              </div>
+                            <% } %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <form id="profileForm" method="post" action="/profile/edit">
+                    <div class="row mt-4">
+                      <div class="d-flex flex-column flex-md-row">
+                        <% const setProfile = bot.cmdConfig.setprofile; %>
+                        <% const paypal = await bot.db.get(`paypal_${user.id}`) %> 
+                        <% const portfolio = await bot.db.get(`portfolio_${user.id}`) %> 
+                        <% const hours = await bot.db.get(`availableHours_${user.id}`) %> 
+                        <% const bio = await bot.db.get(`bio_${bot.config.general.guild}_${user.id}`) %> 
+  
+                        <% if((setProfile.roles.some((r) => member.roles.cache.has(r)) || setProfile.permissions.some((p) => member.permissions.has(p))) || (setProfile.permissions.length == 0 && setProfile.roles.length == 0)) { %>
+                          <div class="col-md-6">
+                            <% if(bot.config.server.dashboard.modules.profile.paypal == true) { %>
+                              <p class="text-light mb-1 p-0"><%= bot.language.dashboard.titles.paypal %></p>
+                              <input id="paypal" value="<%= paypal %>" name="paypal" type="text" maxlength="48" placeholder="Your PayPal Address" class="w-75 form-control text-white rounded-2 text-light" style="background-color: #162447; border-color: #16213E;" />
+                            <% } %>
+                            <% if(bot.config.server.dashboard.modules.profile.portfolio == true) { %>
+                              <p class="text-light mb-1 p-0 mt-3"><%= bot.language.dashboard.titles.portfolio %></p>
+                              <input id="portfolio" value="<%= portfolio %>" name="portfolio" type="text" maxlength="<%= bot.config.general.portfolio_limit %>" placeholder="Your Portfolio Link" class="w-75 form-control text-white rounded-2 text-light" style="background-color: #162447; border-color: #16213E;" />
+                            <% } %>
+                            <% if(bot.config.server.dashboard.modules.profile.available_hours == true) { %>
+                              <p class="text-light mb-1 p-0 mt-3"><%= bot.language.dashboard.titles.hours %></p>
+                              <input id="hours" name="hours" value="<%= hours %>" type="hours" maxlength="16" placeholder="Your Availability Hours" class="w-75 form-control text-white rounded-2 text-light" style="background-color: #162447; border-color: #16213E;" />
+                            <% } %>
+                          </div>
+                          <div class="col-md-6 mt-3 mt-md-0">
+                            <% if(bot.config.server.dashboard.modules.profile.bio == true) { %>
+                              <p class="text-light mb-1 p-0"><%= bot.language.dashboard.titles.bio %></p>
+                              <textarea id="bio" name="bio" maxlength="<%= bot.config.general.bio_limit %>" placeholder="Your Biography" class="w-50 form-control text-white rounded-2 text-light w-100" style="background-color: #162447; border-color: #16213E; height: 10rem; width: 13rem;" ><%= bio %></textarea>
+                            <% } %>
+                          </div>
+                        <% } %>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <% if(bot.config.server.dashboard.modules.profile.bio == true || bot.config.server.dashboard.modules.profile.paypal == true || bot.config.server.dashboard.modules.profile.portfolio == true || bot.config.server.dashboard.modules.profile.hours == true ) { %>
+                        <div class="mt-4">
+                          <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                      <% } %> 
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const sidebarBttn = document.querySelector(".profile");
+    sidebarBttn.classList.add("active");
+
+    $("#profileForm").on("submit", async(e) => {
+      e.preventDefault();
+
+      const paypal = $("#paypal").val();
+      const bio = $("#bio").val();
+      const portfolio = $("#portfolio").val();
+      const hours = $("#hours").val();
+
+      $.ajax({
+        url: "/profile/edit",
+        type: "POST",
+        data: {
+          paypal,
+          bio,
+          portfolio,
+          hours
+        },
+        dataType: "json",
+        success: ((resp) => {
+          toastr.success("Your profile have been edited successfully.")
+        }),
+        error: (e) => {
+          console.log(e);
+        }
+      });
+
+    });
+
+    const colorCircles = document.querySelectorAll(".roleColor")
+    colorCircles.forEach((el) => {
+      let colorData = $(el).attr("data-color");
+      colorData = Number(colorData).toString(16);
+      
+      el.style.backgroundColor = `#${colorData}`;
+    })
+  </script>
+</html>

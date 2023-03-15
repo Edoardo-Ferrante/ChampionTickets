@@ -1,0 +1,88 @@
+<html>
+  <%- await include("partials/head") %>
+  <body>
+    <div>
+      <%- await include("partials/navbar") %>
+      <div class="bg-darkblue">
+        <div class="logs">
+          <div class="container px-0">
+            <h3 class="mt-5 text-light text-center text-md-start"><%= bot.language.dashboard.titles.server_logs %></h3>
+          </div>
+          <div class="container mt-4">
+            <div class="d-flex row statsBox py-3 px-2">
+              <div class="col-12 scrollbarSettings">
+                <div class='py-2 px-2 rounded-1 logsScroll' style="background-color: rgba(22,33,62, 0.5);">
+                  <% let serverLogs = (await bot.db.get(`serverLogs_${bot.config.general.guild}`) || []).reverse() %>
+                  <% if(serverLogs.length > 0) { %>
+                    <% for(const log of serverLogs) { %>
+                      <div>
+                        <p class="m-0 p-0 text-light">
+                          <%- bot.utils.dashboardFormat(bot.language.dashboard.logs[log.message]).replace("[DATE]", `<span style="color: #CFD2CF;">[${log.date}]</span>`)
+                            .replace("[AUTHOR]", log.author)
+                            .replace("[AUTHOR_ID]", log.author_id || "N/A")
+                            .replace("[USER]", log.user || "N/A")
+                            .replace("[USER_ID]", log.user_id || "N/A")
+                            .replace("[AMOUNT]", log.amount || 0)
+                            .replace("[CHANNEL_NAME]", log.channel_name || "N/A")
+                            .replace("[CHANNEL_ID]", log.channel_id || "N/A")
+                            .replace("[TICKET]", log.ticketId || "N/A")
+                            .replace("[OPTION]", log.option || "N/A")
+                            .replace("[INVOICE_ID]", log.invoice_id || 0)
+                            .replace("[CURRENCY]", bot.config.general.currency_symbol)
+                            .replace("[INVOICE_AMOUNT]", log.invoice_amount || 0) %> 
+                        </p>
+                        <hr style="color: #404e60; margin-top: 0.4rem; margin-bottom: 0.4rem;">
+                      </div>
+                    <% } %>
+                  <% } else { %>
+                    <div class="text-center align-items-center w-100">
+                      <span class="text-light fw-bold"><%= bot.language.dashboard.no_logs %></span>
+                    </div>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container px-0">
+            <h3 class="mt-5 text-light text-center text-md-start"><%= bot.language.dashboard.titles.dash_logs %></h3>
+          </div>
+          <div class="container mt-4 mb-5">
+            <div class="d-flex row statsBox py-3 px-2">
+              <div class="col-12 scrollbarSettings">
+                <div class='py-2 px-2 rounded-1 logsScroll' style="background-color: rgba(22,33,62, 0.5);">
+                  <% const dashboardLogs = (await bot.db.get(`dashboardLogs_${bot.config.general.guild}`) || []).reverse() %> 
+                  <% if(dashboardLogs.length > 0) { %>
+                    <% for(const log of dashboardLogs) { %>
+                      <p class="m-0 p-0 text-light">
+                        <%- bot.utils.dashboardFormat(bot.language.dashboard.logs[log.message]).replace("[DATE]", `<span style="color: #CFD2CF;">[${log.date}]</span>`)
+                          .replace("[AUTHOR]", log.author)
+                          .replace("[USER]", log.user)
+                          .replace("[AMOUNT]", log.amount || 0)
+                          .replace("[CHANNEL_NAME]", log.channel_name)
+                          .replace("[CHANNEL_ID]", log.channel_id)
+                          .replace("[TICKET]", log.ticketId)
+                          .replace("[OPTION]", log.option || "N/A")
+                          .replace("[INVOICE_ID]", log.invoice_id || 0)
+                          .replace("[CURRENCY]", bot.config.general.currency_symbol)
+                          .replace("[INVOICE_AMOUNT]", log.invoice_amount || 0) %> 
+                      </p>
+                      <hr style="color: #404e60; margin-top: 0.4rem; margin-bottom: 0.4rem;">
+                    <% } %>
+                  <% } else { %>
+                    <div class="text-center align-items-center w-100">
+                      <span class="text-light fw-bold"><%= bot.language.dashboard.no_logs %></span>
+                    </div>
+                  <% } %> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const sidebarBttn = document.querySelector(".logs");
+    sidebarBttn.classList.add("active");
+  </script>
+</html>

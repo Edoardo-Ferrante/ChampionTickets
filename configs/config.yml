@@ -1,0 +1,613 @@
+# ________________________________________________
+#
+#       CHAMPION TICKETS CONFIGURATION FILE
+#
+# Here you can customize Bot's settings.
+#
+# ________________________________________________
+
+version: "1.7.2"
+
+# ____________________________
+#
+# GENERAL OPTIONS
+# ____________________________
+
+general:
+  # Name of the Bot
+  name: "CrypticOrigins Tickets"
+  # Bot's Prefix
+  prefix: "-"
+  # Bot Token obtained from Discord Developer Portal
+  token: "MTA4NDEzOTAzMTAzNTY1MDEyOA.Gs8yLx.EkRIlRo799gCt-xkLdjB1yd9EPjJgrBdF-zad4"
+  # Mention Support Role in new Tickets
+  mention_support: false
+  # Mention Ticket Author in new Tickets
+  mention_author: false
+  # Save Transcripts
+  transcripts: false
+  # Transcript Type, TXT or HTML
+  transcript_type: "HTML"
+  # DM Transcripts to User & Support who claimed ticket
+  dm_transcript: false
+  # Confirm Close of Ticket
+  confirm_close: true
+  # ID of User who is gonna have access to EVAL Command
+  # Example:
+  #
+  # eval:
+  #   - "1234"
+  #
+  # If you don't want any, just change to eval: []
+  eval: []
+  # Currency for PayPal/Crypto, EUR/USD etc.
+  currency: "USD"
+  # Currency Symbol
+  currency_symbol: "$"
+  # Type of Channel for Tickets Statistics
+  # Can be: GUILD_TEXT, GUILD_VOICE
+  stats_type: "GUILD_VOICE"
+  # ID of Guild in which Bot will be used
+  # Used for Custom Status Stats, Slash Commands and similar
+  guild: ""
+  # Review Character Limit
+  review_limit: 256
+  # Bio Charcter Limit, after limit is exceeded bot automatically adds '...' at the end.
+  bio_limit: 512
+  # After how much time to delete ticket when closed (in seconds)
+  delete_after: 7
+  # After how much time to delete ticket when no category selected (in seconds)
+  no_select_delete: 600 # 10 minutes
+  # Announce Reviews to Specific Channels
+  send_review: false
+  # Whether to send Message (Custom, not Transcripts) to User after Closing Ticket
+  dm_message: false
+  # Remove Ticket when User Leaves Server
+  remove_leave: false
+  # After how much time to stop to ask for questions in Ticket when no answer (in seconds)
+  # Timeout for Questions
+  question_idle: 300
+  # Whether 'Close Ticket' buttons are enabled
+  close_button: true
+  # Remove Command Message after Sent
+  remove_command: false
+  # Whether to Register Slash Commands
+  slash: true
+  # Rename Ticket Channel to 'closed-user' after closure
+  rename_close: true
+  # Limit of Tickets User can open (requires category.status: false, 
+  # if using categories ignore this line, per-category limits are below)
+  ticket_limit: 1
+  # Ask for Review after Ticket Closure
+  ask_review: false
+  # Role(s) or Permission(s) User(s) is required to have in order to be reviewed
+  # Used to limit who can be reviewed by users
+  # When both are empty, you can review anyone
+  review_req:
+    roles: []
+    permissions: []
+  # Is Suggestion Decision (Accept, Deny, Delete) Option Enabled
+  sugg_decision: true
+  # Whether to add balance into Freelancers bank upon marking commission as COMPLETED
+  add_balance: true
+  # Whether 'Claim Ticket' buttons are enabled
+  claim_button: false
+  # What % of commission quote does freelancers keep, just number, without %
+  commission_tax: "85"
+  # Whether to rename Ticket Channel Name upon Category Selection to Format specified in
+  # Category Configuration
+  rename_choose: false
+  # Whether to send new Commissions to specific channel
+  send_commissions: false
+  # Whether to restrict Commission Tickets to just Commission Access Roles (commission_access)
+  # upon creation & to add user whoes quote was accepted to ticket automatically.
+  # Support Roles (roles.support) won't be added to ticket automatically if this is 'true'
+  commission_perms: false
+  # Whether 'Message Client' button is enabled
+  msg_button: false
+  # Whether to save Images in Ticket Transcripts
+  # This will increase Transcript File Size
+  save_images: true
+  # Timezone used to check Global Service Team availability
+  # List of all TimeZones: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  timezone: "Europe/Belgrade"
+  # Global Service Team time availability, leave empty to disable
+  # If someone opens Ticket in time you're not available, it will send message
+  # Example 07:30-23:30, 13:00-22:00
+  availability: ""
+  # Whether to enable Client Statistics such as how much Client's spent
+  # on orders & number of orders they placed
+  client_info: false
+  # How to use Review Command, whether to Staff use command
+  # to prompt Client (Requires Ticket to be Commission) for Review, or to Client Review Freelancer.
+  # Can be STAFF or NORMAL
+  review_type: "NORMAL"
+  # Profile Portfolio character limit, some URLs are long some are shorter
+  # so set this to something optimal
+  portfolio_limit: 128
+  # Whether to Check for Inactive Tickets and to Close them
+  inactivity_check: true
+  # How much Hours should pass after last Message in order
+  # to mark ticket as inactive
+  inactivity_time: 168 # 7 days
+  
+# ____________________________
+#
+# ADDONS CONFIGURATION
+# ____________________________
+
+addons:
+  # Folder Name of Addon to Disable
+  disabled: ["example"]
+
+# ____________________________
+#
+# SERVER CONFIGURATION
+# ____________________________
+
+server:
+  # Whether Server is enabled
+  # Required for SelfHost Ticket Transcripts & Dashboard
+  enabled: false
+  # URL on which server will be.
+  # If you're using IP (like in first example) you need to add
+  # port you specified to the end of url in format: ':PORT'
+  # Example: http://123.45.675.104, http://test.com
+  url: ""
+  # Port for Server
+  port: 7070
+  # SelfHost Ticket Transcripts
+  # Requires server: true
+  selfhost:
+    # Whether SelfHost Transcripts are enabled
+    enabled: false
+    # View Transcript Button
+    view: false
+    # Whether Download Transcript Button & Download Feature are enabled
+    download: false
+    # Are Transcripts public or they requires Password for access
+    public_transcripts: false
+    # Password which can be used to access any Transcript
+    # Do not share it with anyone, users will get their when ticket is closed
+    admin_login: "adminPw123"
+  # Dashboard Configuration
+  # To configure who will be able to login into dashboard, visit
+  # 'roles' section down below
+  # Everyone with 'Administrator' Permission have access to dashboard!
+  # Setup Tutorial from Docs: https://champion-bot.gitbook.io/tickets/other/dashboard-setup
+  dashboard:
+    # Whether to enable Dashboard
+    enabled: false
+    # Discord Bot Client ID
+    client_id: ""
+    # Discord Bot Client Secret
+    client_secret: ""
+    # Some long Secret Password, used for Backend Stuff
+    # Do not share it with anyone
+    jwt: ""
+    # Whether to save Server & Dashboard Logs
+    save_logs: false
+    # List of Dashboard Modules
+    modules:
+      settings:
+        # Settings Page
+        enabled: true
+        # Config editing section
+        config: true
+        # Commands toggling section
+        commands: true
+      ticketing: true
+      logs: true
+      invoicing: true
+      profile:
+        paypal: true
+        portfolio: true
+        bio: true
+        available_hours: true
+    # Configuration for User Dashboard Access
+    users:
+      # IDs of User's who will have access to Dashboard
+      access: []
+      # IDs of User's who will have access to Config Dashboard Section
+      config: []
+      # IDs of User's who will have access to Commands Dashboard Section
+      commands: []
+
+# ____________________________
+#
+# CHANNELS CONFIGURATION
+#
+# All of Channels are required
+# ____________________________
+
+channels:
+  # Name of the Ticket Channel, after '-' bot adds user's username
+  # Available Placeholders: <username>, <ticket> (Ticket ID)
+  channel_name: "🎫・ticket-<username>"
+  # Name of the Ticket Channel after it's closed, after '-' bot adds user's username
+  # Available Placeholders: <username>, <ticket> (Ticket ID)
+  closed_name: "🔒・closed-<username>"
+  # Name of the Ticket Channel when it has an priority (high/urgent), after '-' bot adds user's username
+  # Available Placeholders: <priority> (Priority Emoji), <username>, <ticket> (Ticket ID)
+  priority_name: "<priority>・priority-<username>"
+  # ID/Name of Category in which to open tickets
+  category_id: ""
+  # ID/Name of Channel to send Transcripts of Tickets
+  transcripts: ""
+  # ID/Name of Channel to Send New Reviews
+  reviews: ""
+  # ID/Name of Channel to send Auto Announcements
+  announce: ""
+  # ID/Name of Channel in which to send new Suggestions
+  suggestions: ""
+  # ID/Name of Channel in which to send message for Suggestion Decision
+  sugg_decision: ""
+  # ID/Name of Channel in which to send Accepted/Denied Suggestions
+  sugg_logs: ""
+  # ID/Name of Channel in which to send Money Withdraw Requests
+  withdraw: ""
+  # ID/Name of Channel in which to send new Commisssions
+  commissions: ""
+  
+# ____________________________
+#
+# TICKET CATEGORIES CONFIGURATION
+#
+# Add/Remove Categories for Tickets
+# ____________________________ 
+
+category:
+  # Are Ticket Categories Enabled
+  status: true
+  # Placeholder for Select Menu
+  placeholder: "Click to view Categories"
+  # Whether to send panel with Select Menu to choose Ticket Category
+  # before creating channel
+  instant_panel: false
+  # Whether to Mention Roles from both 'support' field & 'category.roles' field or just specific one
+  # Need 'mention_support': true
+  # Available Types: BOTH, CATEGORY_ROLES (roles from 'category.[category].roles'), 
+  # SUPPORT_ROLES (roles from 'roles.support')
+  mention_support_type: "SUPPORT_ROLES"
+  # Whether to disallow writting into channel until Ticket Questions are answered
+  lock_ticket: false
+  # Are Tickets moved to specific Channel Category after Ticket Category is selected
+  separateCategories: false
+  # Per-Category Roles.
+  # Need status: true
+  separateRoles:
+    # Only users with specific roles can see ticket, 'roles' field in categories
+    enabled: false
+    # Both users with role from 'roles' field & roles from 'roles.support' field can see ticket.
+    both: false
+  # How to ask questions, using Modal or by answering questions in chat
+  # Available Types: MODAL, CHAT
+  questions_type: "MODAL"
+  # Ask Questions on Ticket Creation, if Ticket Categories are disabled, 
+  # otherwise use 'ask' field from Ticket Category
+  questions: false
+  # List of Questions to ask, if Ticket Categories are disabled & questions: true
+  questionsList:
+    # Name for question, used for title
+    # If using questions_type: "MODAL", this can be max. 45 characters long
+    - name: "First Question"
+      # Question to ask
+      # If using questions_type: "MODAL", this can be max. 100 characters long
+      question: "This is First Question."
+    - name: "Second Question"
+      question: "This is Second Question."
+    - name: "Third Question"
+      question: "This is Third Question."
+
+# ____________________________
+#
+# AUTO RESPONSES
+# ____________________________
+
+autoResponse:
+  # Are Responses Enabled
+  enabled: false
+  # Embed or Normal Message 
+  # Values: EMBED, TEXT
+  type: "EMBED"
+  # List of Responses
+  list:
+    # Initiator Message - Response Message
+    "Test Message": "Test Response"
+    "Another Message": "Another Response"
+
+# ____________________________
+#
+# AUTO ANNOUNCEMENTS
+# ____________________________
+
+autoAnnounce:
+  # Are Announcements Enabled
+  enabled: false
+  # Embed or Normal Message 
+  # Values: EMBED, TEXT
+  type: "EMBED"
+  # Interval for Announcements (in seconds)
+  interval: 60
+  # List of Responses
+  list:
+    # Message to Announce
+    - "First Message"
+    - "Second Message"
+
+# ____________________________
+#
+# PRODUCTS CONFIGURATION
+# ____________________________
+
+products:
+  # Format for Products List Embed, available placeholders: [ID], [NAME], [DESCRIPTION], [TYPE]
+  format: "**#[ID]** [NAME]\n- [DESCRIPTION]"
+  # After how much time to Delete Download Link (to make it invalid)
+  # Example: 10m, 1h, 1w, 1mo..
+  delete_download: "1h"
+  # How much Users can use one Download Link (make limk invalid after x users downloads from it)
+  limit_download: 1
+
+# ____________________________
+#
+# SELLIX CONFIGURATION
+# ____________________________
+
+sellix:
+  # Sellix API Secret (https://champion-bot.gitbook.io/tickets/other/tebex-and-sellix#sellix)
+  secret: ""
+  # Roles to assign to User upon Verification when sellix.separateProducts: false
+  roles: []
+  # Are Per Product Verify Roles Enabled
+  separateProducts: false
+  # List of Products and Roles to give upon Verification,
+  # Requires sellix.separateProducts: true
+  products:
+    # Title of Sellix Product
+    - name: ""
+      # List of Roles to give upon Verification
+      roles: []
+
+# ____________________________
+#
+# TEBEX CONFIGURATION
+# ____________________________
+
+tebex:
+  # Tebex API Secret (https://champion-bot.gitbook.io/tickets/other/tebex-and-sellix#tebex)
+  secret: ""
+  # Roles to assign to User upon Verification when tebex.separatePackages: false
+  roles: []
+  # Are Per Product Verify Roles Enabled
+  separatePackages: false
+  # List of Products and Roles to give upon Verification,
+  # Requires tebex.separatePackages: true
+  packages:
+    # Title for Package
+    - name: ""
+      # Tebex Package ID
+      id: ""
+      # List of Roles to give upon Verification
+      roles: []
+
+# ____________________________
+#
+# CRAFTINGSTORE CONFIGURATION
+# ____________________________
+
+cstore:
+  # Tebex API Secret (https://champion-bot.gitbook.io/tickets/other/tebex-and-sellix#craftingstore)
+  secret: ""
+  # Roles to assign to User upon Verification when tebex.separatePackages: false
+  roles: []
+  # Are Per Product Verify Roles Enabled
+  separatePackages: false
+  # List of Products and Roles to give upon Verification,
+  # Requires tebex.separatePackages: true
+  packages:
+    # Title for Package
+    - name: ""
+      # Tebex Package ID
+      id: ""
+      # List of Roles to give upon Verification
+      roles: []
+
+# ____________________________
+#
+# PAYPAL (INVOICING) CONFIGURATION
+# ____________________________
+
+paypal:
+  # PayPal API Secret
+  secret: ""
+  # PayPal API Client ID
+  client_id: ""
+  # PayPal Mail to which to send Money after Invoice is Paid
+  mail: ""
+  # Terms of Service that will be attached to invoice
+  tos: ""
+  # Notes that will be attached to invoice
+  # Available Placeholders: <username>, <userId>, <author>, <date> (of creation)
+  notes: ""
+  # Business Name for Invoice title
+  title: "Champion Tickets"
+  # How much days doest user have to Pay Invoice
+  # For default (45) leave -1
+  # Available values: 10, 15, 30, 45, 60, 90
+  days: -1
+  # Whether to send Message to channel After invoice status is changed to PAID
+  invoice_paid: false
+  # IDs/Names of Roles which to give upon paying invoice
+  # Leave empty for none
+  roles_give: []
+  # List of Taxes applied on Invoice
+  # Example:
+  #
+  # taxes:
+  #  # Tax Name
+  #  - name: "Freelancer Tax"
+  #    # Tax type, can be NUMBER or PERCENT (of Base Pricee)
+  #    type: "NUMBER"
+  #    # Amount in Currency you specified in 'currency' field
+  #    # or percent (without '%') of base price
+  #    amount: 0
+  #
+  # If you don't want any, just change to blacklist: []
+  taxes: []
+
+# ____________________________
+#
+# TICKET PRIORITY CONFIGURATION
+# ____________________________
+
+priority:
+  # Whether Priority System is Enabled
+  enabled: false
+  # Low Priority Name
+  low: "Low"
+  # Normal Priority Name (Default One)
+  normal: "Normal"
+  # High Priority Name
+  high: "High"
+  # Very High Priority Name
+  urgent: "Urgent"
+
+# ____________________________
+#
+# ROLES CONFIGURATION
+# ____________________________
+
+roles:
+  # List of Support Roles which will have access to Tickets
+  # Not Required if separateRoles > enabled is true.
+  # Example:
+  #
+  # support:
+  #   - "1234"
+  #
+  # If you don't want any, just change to support: []
+  support: []
+  # Format same as for 'support' Roles
+  blacklist: []
+  # Roles which can bypass specific stuff
+  # Format is same as for above roles
+  bypass:
+    # Roles which can bypass Command Cooldown
+    cooldown: []
+    # Roles which can bypass Command Permissions
+    permission: []
+  # Roles which will have access to commission ticket beside User whoes quote was accepted.
+  # If empty all 'support' Roles will have access
+  commission_access: []
+  # Roles Configuration for Dashboard Access
+  dashboard:
+    # Roles which will have access to Dashboard
+    # Everyone with 'Administrator' Permission have access to dashboard!
+    access: []
+    # Roles which will be able to edit Config from Dashboard
+    config: []
+    # Roles which will be able to enable/disable Commands from Dashboard
+    commands: []
+
+# ____________________________
+#
+# USERS CONFIGURATION
+# ____________________________
+
+users:
+  # List of Users who are Blacklisted from opening Tickets
+  # Example:
+  #
+  # blacklist:
+  #   - "1234"
+  #
+  # If you don't want any, just change to blacklist: []
+  blacklist: []
+
+# ____________________________
+#
+# CUSTOM STATUS CONFIGURATION
+# ____________________________
+
+status:
+  # Can be Playing, Listening, Watching and Competing
+  type: "Watching"
+  # Random Messages in Custom Status, changing every x minutes/hours 
+  change_random: true
+  # Interval to Change Custom Status (in seconds)
+  interval: 180 # 3 minutes, don't go below that
+  # Message which is displayed in Custom Status if change_random = false
+  message: "Champion Tickets v1.7.2"
+  # List of Custom Status's if change_random = true
+  # Available Placeholders: <members>, <channels>, <currentTickets> (Number of Current Tickets), <totalTickets> (Total Tickets Opened)
+  messages:
+    - "<members> total members"
+    - "<currentTickets> Currently Open Tickets"
+    - "<totalTickets> Total Tickets Opened"
+  
+# ____________________________
+#
+# EMOJIS CONFIGURATION
+# ____________________________
+
+emojis:
+  # Emojis added to new Suggestions
+  yes_emoji: "👍"
+  no_emoji: "👎"
+  remove_vote: "⬜"
+  # Create Ticket Button Emoji
+  create: "🎫"
+  # Close Ticket Button Emoji
+  close: "🔒"
+  # Cancel Ticket Deletation Button Emoji
+  cancel_close: "🔓"
+  # Next Button Emoji
+  next: "▶"
+  # Previous Button Emoji
+  previous: "◀"
+  # Get File Button Emoji
+  file: "📁"
+  # Get Link Button Emoji
+  link: "🔗"
+  # Ticket Priority Emojis
+  priority:
+    # Low Priority Emoji
+    low: "🔵"
+    # High Priority Emoji
+    high: "🟠"
+    # Very High Priority Emoji
+    urgent: "🔴"
+  # Transcript Logs Buttons
+  transcripts:
+    # View Transcript Button
+    view: "👀"
+    # Download Transcript Button
+    download: "📃"
+  # Answer Ticket Questions Button
+  answer_questions: "🗒"
+  # Accept Quote Button
+  quote: "✅"
+  # Claim Ticket Button
+  claim: "✋"
+  # Send Quote Button
+  send_quote: "📤"
+  # Review Number of Stars & Star Emoji
+  review:
+    star: "⭐"
+    one: "1️⃣"
+    two: "2️⃣"
+    three: "3️⃣"
+    four: "4️⃣"
+    five: "5️⃣"
+  # Message Commission Client Button
+  msg_commission: "📤"
+  # Reply to Commission DM Question Message Button
+  reply_commission: "🔁"
+  # Cancel Emoji
+  stop: "❌"
+
+# _____________________________________________________________
+#
+#                     END OF CONFIGURATION
+# _____________________________________________________________

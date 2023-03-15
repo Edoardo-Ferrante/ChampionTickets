@@ -1,0 +1,15 @@
+<html>
+  <%- await include("partials/head") %>
+  <% const loginURL = `https://discord.com/oauth2/authorize?client_id=${bot.config.server.dashboard.client_id}&redirect_uri=${bot.config.server.url}/callback&response_type=code&scope=identify%20guilds` %> 
+  <body>
+    <div style="height: 100vh;" class="d-flex bg-darkblue px-1 text-center justify-content-center flex-column">
+      <h2 class="text-light fw-bold"><%= bot.language.dashboard.title %></h2>
+      <p class="mb-5 p-0 text-white"><%= bot.language.dashboard.welcome %></p>
+      <div class="d-flex justify-content-center">
+        <a href="<%= loginURL %>">
+          <button class="btn btn-primary btn-lg"><%= bot.language.dashboard.login %></button>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

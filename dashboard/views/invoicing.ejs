@@ -1,0 +1,111 @@
+<html>
+  <%- await include("partials/head") %>
+  <body>
+    <div>
+      <%- await include("partials/navbar") %>
+      <div class="bg-darkblue">
+        <div class="invoices">
+          <div class="container px-0">
+            <h3 class="mt-5 text-light text-center text-md-start"><%= bot.language.dashboard.titles.invoices_page %></h3>
+          </div>
+          <div class="container mt-4">
+            <div class="d-flex row statsBox py-3 px-2">
+              <div class="col-12 scrollbarSettings">
+                <div class='py-2 table-responsive-md px-2 rounded-1 invoicesScroll' style="background-color: #16213e80;">
+                  <table class="table table-hover table-striped">
+                    <thead>
+                      <tr class="text-white">
+                        <th class="d-none d-md-flex" scope="col"><%= bot.language.dashboard.invoice.id %></th>
+                        <th scope="col"><%= bot.language.dashboard.invoice.author %></th>
+                        <th scope="col"><%= bot.language.dashboard.invoice.user %></th>
+                        <th scope="col"><%= bot.language.dashboard.invoice.amount %></th>
+                        <th scope="col"><%= bot.language.dashboard.invoice.date %></th>
+                        <th scope="col"><%= bot.language.dashboard.invoice.actions %></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% if(invoices.length > 0) { %>
+                        <% for(const invoice of invoices) { %>
+                          <% const invoiceData = await bot.db.get(`invoice_${invoice.id}`) %> 
+                          <tr>
+                            <th class="d-none d-md-flex" scope="row"><%= invoice.id %></th>
+                            <td><%= bot.users.cache.get(invoiceData?.author)?.tag || "N/A" %></td>
+                            <td><%= bot.users.cache.get(invoiceData?.user)?.tag || "N/A" %></td>
+                            <td><%= bot.config.general.currency_symbol + "" + invoice.total_amount.value %></td>
+                            <td><%= new Date(invoice.invoice_date).toLocaleDateString("en-GB") %></td>
+                            <td>
+                              <div class="actions col-2 col-md-6 d-flex justify-content-start">
+                                <a href="https://www.paypal.com/invoice/s/details/<%= invoice.id %>">
+                                  <i class="fa-solid fa-eye text-light me-2 me-md-3" style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View Invoice"></i>
+                                </a>
+                                <a>
+                                  <i class="fa-solid fa-signal text-light me-2 me-md-3" style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status: <%= invoice.status %>"></i>
+                                </a>
+                                <a class="d-block d-md-none">
+                                  <i class="fa-solid fa-hashtag text-light me-2 me-md-3" style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="<%= invoice.id %>"></i>
+                                </a>
+                                <% if(invoice.status != "CANCELLED" && (invoice.status == "UNPAID" || invoice.status == "SENT")) { %>
+                                  <a onclick="cancelInvoice(event, '<%= invoice.id %>')">
+                                    <i class="fa-solid fa-ban text-light me-2 me-md-3" style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top"
+                                      data-bs-title="Cancel Invoice"></i>
+                                  </a>
+                                <% } %>
+                              </div>
+                            </td>
+                          </tr>
+                        <% } %> 
+                      <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container px-0">
+            <div class="btn-group mt-3 dropdown">
+              <button type="button" class="btn dropdown-toggle bg-maindark text-light filterBttn" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= bot.language.dashboard.invoice.filter %> 
+              </button>
+              <div class="dropdown-menu bg-darkblue dropHoverEffect">
+                <button class="dropdown-item text-white" type="button" onclick="filterResults(0)">All</button>
+                <button class="dropdown-item text-white" type="button" onclick="filterResults(1)">Paid</button>
+                <button class="dropdown-item text-white" type="button" onclick="filterResults(2)">Unpaid</button>
+                <button class="dropdown-item text-white" type="button" onclick="filterResults(3)">Marked as Paid</button>
+                <button class="dropdown-item text-white" type="button" onclick="filterResults(4)">Cancelled</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const sidebarBttn = document.querySelector(".invoicing");
+    sidebarBttn.classList.add("active");
+
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+    const filterResults = (type) => {
+      let url = new URL(window.location.href);
+      url.searchParams.set("filter", type);
+      if(type == 0)
+        url.searchParams.delete("filter");
+      window.location.href = url.href;
+    }
+
+    const cancelInvoice = (event, invoiceId) => {
+      event.preventDefault();
+      $.ajax({
+        url: "/invoicing/" + invoiceId + "/cancel",
+        type: "post",
+        dataType: "json",
+        success: ((resp) => {
+          toastr.success("Invoice have been cancelled, reloading.");
+          setTimeout(() => location.reload(), 5000);
+        }),
+        error: ((err) => { })
+      })
+    }
+  </script>
+</html>

@@ -1,0 +1,171 @@
+# ________________________________________________
+#
+#       CHAMPION TICKETS CATEGORIES FILE
+#
+# Here you can customize Ticket Categories
+#
+# ________________________________________________
+
+# Embed Title
+- title: "Ticket - General"
+  # Category Name
+  name: "General"
+  # Placeholder for Select Menu
+  placeholder: "Open Ticket in this Category if need General Help"
+  # Type for Category, can be COMMISSION, SUPPORT or SUBCATEGORY_PARENT
+  type: "SUPPORT"
+  # Channel Name to which to rename Ticket upon Category Selection
+  # Requires rename_choose: true
+  # Available Placeholders: <username>, <ticket>
+  channel_name: "🎫・general-<username>"
+  # ID For Select Menu
+  id: "general_category"
+  # Select Menu Emoji 
+  emoji: "🎫"
+  # Name/ID of Category to which to move ticket after Ticket Category is selected, for none leave empty
+  # Need separateCategories: true
+  category: ""
+  # Names/IDs of Roles which will Staff need to view ticket.
+  # Requires separateRoles > enabled: true
+  roles: []
+  # Ask Questions for this Category
+  ask: false
+  # Max Number of Tickets User can open in Category
+  # Per-Category Limit
+  limit: 1
+  # Configuration regarding Commissions for this Category
+  # These fields are not required.
+  # Requires type: "COMMISSION"
+  commission:
+    # Roles which to mention in New Commission Message with Quote Button
+    roles: []
+    # Channel in which to send New Commission Message with Quote Button
+    # To send in channels.commissions channel, leave empty
+    channel: ""
+  # Category Selected Embed
+  embed:
+    # Description of Embed for this Category
+    # Available Placeholders: <user>, <category>, <reason>
+    description: "**Category:** <category>\n\nHey <user>, this is your ticket, please describe your problem or ask a question.\nStaff will be with you shortly, be patient, thanks!"
+    # Embed Color, can be Name (Red, Green etc.) or HEX (#f1f1f1, #dddddd etc.)
+    color: "Yellow"
+  # Panel for Selected Embed
+  panel:
+    # Title of Panel Embed for this Category
+    title: "General Help"
+    # Description of Panel Embed for this Category
+    description: "Open Ticket in this Category if you need General Help."
+    # Embed Color, can be Name (Red, Green etc.) or HEX (#f1f1f1, #dddddd etc.)
+    color: "Yellow"
+  # List of Questions to ask
+  # Need questions: true & Ticket Categories Enabled
+  questionsList:
+    # Name for question, used for title
+    # If using questions_type: "MODAL", this can be max. 45 characters long
+    - name: "First Question"
+      # Question to ask
+      # If using questions_type: "MODAL", this can be max. 100 characters long
+      question: "This is First Question."
+    - name: "Second Question"
+      question: "This is Second Question."
+    - name: "Third Question"
+      question: "This is Third Question."
+- title: "Ticket - Buycraft"
+  name: "Buycraft"
+  placeholder: "Open Ticket in this Category if need Buycraft Help"
+  type: "SUPPORT"
+  channel_name: "🎫・buycraft-<username>"
+  id: "buycraft_category"
+  emoji: "💵"
+  category: ""
+  roles: []
+  ask: false
+  limit: 1
+  # Only if Ticket Type is COMMISSION
+  commission:
+    roles: []
+    channel: ""
+  embed:
+    description: "**Category:** <category>\n\nHey <user>, this is your ticket, please describe your problem or ask a question.\nStaff will be with you shortly, be patient, thanks!"
+    color: "Yellow"
+  panel:
+    title: "BuyCraft Help"
+    description: "Open Ticket in this Category if you need help with Buycraft."
+    color: "Yellow"
+  questionsList:
+    - name: "First Question"
+      question: "This is First Question."
+    - name: "Second Question"
+      question: "This is Second Question."
+    - name: "Third Question"
+      question: "This is Third Question."
+- title: "Ticket - Bug"
+  name: "Bug"
+  placeholder: "Open Ticket in this Category if you've found Bug"
+  type: "SUPPORT"
+  channel_name: "🎫・bug-<username>"
+  id: "bug_category"
+  emoji: "🐛"
+  category: ""
+  roles: []
+  ask: false
+  limit: 1
+  # Only if Ticket Type is COMMISSION
+  commission:
+    roles: []
+    channel: ""
+  embed:
+    description: "**Category:** <category>\n\nHey <user>, this is your ticket, please describe your problem or ask a question.\nStaff will be with you shortly, be patient, thanks!"
+    color: "Yellow"
+  panel:
+    title: "Report a Bug"
+    description: "Open Ticket in this Category if you've found a bug."
+    color: "Yellow"
+  questionsList:
+    - name: "First Question"
+      question: "This is First Question."
+    - name: "Second Question"
+      question: "This is Second Question."
+    - name: "Third Question"
+      question: "This is Third Question."
+- title: "Ticket - SubCategory Parent"
+  name: "SubCategory Parent"
+  placeholder: "Open Ticket in this Category to see subcategories."
+  type: "SUBCATEGORY_PARENT"
+  id: "sub_parent"
+  emoji: "🌳"
+  panel:
+    title: "SubCategory Parent Panel"
+    description: "Open Ticket in this Category then choose SubCategory"
+    color: "Yellow"
+  subcategories:
+    - title: "SubCategory Title"
+      name: "SubCategory Example"
+      placeholder: "Open Ticket in this Category if need SubCategory Help"
+      id: "category_sub"
+      emoji: "🌲"
+      roles: []
+      # Type for SubCategory, can be COMMISSION or SUPPORT
+      type: "SUPPORT"
+      ask: false
+      channel_name: "🌲・subcategory-<username>"
+      category: ""
+      limit: 1
+      # Only if Ticket Type is COMMISSION
+      commission:
+        roles: []
+        channel: ""
+      embed:
+        description: "**Category:** <category>\n**Parent Category:** <subcategory>\n\nHey <user>, this is your ticket, please describe your problem or ask a question.\n\n**Available Hours**\n\nMost of the time I'm available from 8am to 10pm GMT+1."
+        color: "Yellow"
+      panel:
+        title: "SubCategory Help"
+        description: "Open Ticket in this Category if you need help with SubCategory."
+        color: "Yellow"
+      questionsList:
+        - name: "First SubCategory Question"
+          question: "This is First SubCategory Question."
+        - name: "Second SubCategory Question"
+          question: "This is Second SubCategory Question."
+        - name: "Third SubCategory Question"
+          question: "This is Third SubCategory Question."

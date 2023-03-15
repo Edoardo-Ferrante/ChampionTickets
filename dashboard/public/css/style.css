@@ -1,0 +1,441 @@
+/* Variables */
+
+:root {
+  --main-dark: #082032;
+  --dark-blue: #16213E;
+  --super-dark: #0a1e2e;
+  --active: #2D31FA;
+}
+
+.bg-darkblue {
+  background-color: var(--dark-blue);
+}
+
+.bg-maindark {
+  background-color: var(--main-dark);
+}
+
+.bg-superdark {
+  background-color: var(--super-dark);
+}
+
+/* Sidebar */
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 180px;
+  background-color: var(--main-dark);
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.statsBox {
+  background-color: var(--main-dark);
+}
+
+.sidebar-icon {
+  padding-right: 5px;
+}
+
+.sidebar-item {
+  padding: 7px 15px 7px 15px;
+}
+
+.sidebar a {
+  display: block;
+  color: #f0f0f0;
+  padding: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.active {
+  background-color: var(--active);
+}
+
+/* Logo */
+
+.logoEffect {
+  transition: all 0.3s ease-in-out;
+  border-radius: 3px;
+}
+
+.logoEffect:hover:not(.active) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Invoices Table */
+
+.invoices thead {
+  background-color: var(--main-dark);
+  border-bottom-width: 2px;
+  border-color: rgb(51 65 85);
+}
+
+.invoices .table-striped > tbody > tr:nth-child(odd) > td,
+.invoices .table-striped > tbody > tr:nth-child(odd) > th {
+  border-color: rgb(51 65 85);
+  background-color: var(--main-dark);
+  color: #FFF;
+}
+.invoices .table-striped > tbody> tr:nth-child(even) > td,
+.invoices .table-striped > tbody> tr:nth-child(even) > th {
+  border-color: rgb(51 65 85);
+  background-color: var(--main-dark);
+  color: #FFF;
+}
+
+/* Pages */
+
+div.statistics {
+  margin-left: 200px;
+  padding: 1px 16px;
+  min-height: 100vh;
+}
+
+div.tickets {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 100%;
+}
+
+div.profile {
+  margin-left: 200px;
+  padding: 1px 16px;
+  min-height: 100vh;
+  /* height: 100vh; */
+}
+
+div.logs {
+  margin-left: 200px;
+  padding: 1px 16px;
+  min-height: 100vh;
+}
+
+div.invoices {
+  margin-left: 200px;
+  padding: 1px 16px;
+  min-height: 100vh;
+}
+
+div.settings {
+  margin-left: 200px;
+  padding: 1px 16px;
+  min-height: 100vh;
+}
+
+/* Input Placeholders */
+
+::placeholder {
+  color: #FFF;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: #FFF;
+}
+
+::-ms-input-placeholder {
+  color: #FFF;
+}
+
+/* Scrollbar */
+
+/* Div Scrollbars */
+
+.scrollbarSettings > ::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 2px;
+}
+
+.scrollbarSettings > ::-webkit-scrollbar-track {
+  background: #16213e; 
+}
+ 
+.scrollbarSettings > ::-webkit-scrollbar-thumb {
+  background: var(--active); 
+  border-radius: 2px;
+}
+
+.scrollbarSettings > ::-webkit-scrollbar-thumb:hover {
+  background: rgba(45, 49, 250, 0.6);
+}
+
+.navigationBar {
+  transition: all 0.3s ease-in-out;
+}
+
+.logsScroll {
+  height: 16rem;
+  overflow-y: scroll;
+}
+
+.categoryEditScroll {
+  height: 25rem;
+  overflow-y: scroll;
+}
+
+.invoicesScroll {
+  height: 24rem;
+  overflow-y: scroll;
+}
+
+.settingsScroll {
+  height: 16rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+/* Global Scrollbar */
+
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: #16213e; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: var(--active); 
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(45, 49, 250, 0.6);
+}
+
+/* Other */
+
+.dropHoverEffect {
+  border-color: var(--main-dark);
+}
+
+.dropHoverEffect > button:hover {
+  background-image: none;
+  background-color: var(--main-dark);
+}
+
+.filterBttn {
+  border: 0;
+  border-color: var(--main-dark);
+  background-image: none !important;
+  background-color: var(--main-dark) !important;
+}
+
+.transcriptBttn {
+  border: 0;
+  border-color: var(--dark-blue);
+  background-image: none !important;
+  background-color: var(--dark-blue) !important;
+}
+
+textarea {
+  resize: none;
+}
+
+/* Select2 Results */
+
+.select2-results {
+  background-color: var(--super-dark);
+  color: #FFF;
+  border: 1px solid var(--main-dark) !important;
+}
+
+/* Select2 Dropdown Background */
+.select2-search--dropdown {
+  background-color: var(--main-dark);
+  background-color: var(--super-dark);
+  border: 1px solid var(--main-dark) !important;
+  outline: none;
+  color: #FFF;
+}
+
+/* Select2 Select Button */
+.select2-container .select2-selection--single {
+  background-color: var(--dark-blue);
+  border: 1px solid var(--dark-blue) !important;
+  color: #FFF;
+  outline: 0;
+  height: 2.3rem;
+}
+
+/* SELECT2 SELECT BUTTON - MULTIPLE */
+.select2-container .select2-selection--multiple {
+  background-color: var(--dark-blue);
+  border: 1px solid var(--dark-blue) !important;
+  color: #FFF;
+  outline: 0;
+}
+
+/* Select2 Multiple */
+.select2-container {
+  background-color: var(--dark-blue) !important;
+  border: 1px solid var(--dark-blue) !important;
+  color: #FFF;
+  outline: 0;
+}
+
+/* Select2 Selected Option Color */
+.select2-container .select2-selection--single .select2-selection__rendered  {
+  color: #FFF;
+}
+
+/* INPUT FIELD AND DROPDOWN MENU */
+.select2-dropdown {
+  border: none;
+}
+
+/* Select2 Search Field */
+
+.select2-search__field {
+  background-color: var(--dark-blue) !important;
+  color: #FFF;
+  outline: none;
+  border: 1px solid var(--super-dark) !important;
+  border-radius: 3px;
+}
+
+/* Other Select2 Styles */
+
+.select2-container--default .select2-search--inline .select2-search__field {
+  border: none !important;
+}
+
+.select2-search__field::placeholder {
+  color: #999;
+}
+
+.select2-selection__choice {
+  background-color: var(--super-dark) !important;
+  border: 1px solid var(--main-dark) !important;
+}
+
+.select2-selection__choice__remove {
+  background-color: var(--super-dark) !important;
+  transition: all 0.3s ease-in-out;
+}
+.select2-selection__choice__remove:hover {
+  transition: all 0.3s ease-in-out;
+  background-color: var(--main-dark) !important;
+}
+
+.select2-selection__choice__display {
+  padding: 0 7px 0 7px !important;
+}
+
+.select2-results__option--selected {
+  background-color: var(--active) !important;
+}
+
+.select2-results__option--highlighted {
+  background-color: #2a5cff !important;
+}
+
+.select2-selection--multiple {
+  max-height: 8rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+::-webkit-resizer {
+  background-color: var(--active);
+}
+
+@media screen and (max-width: 758px) {
+  /* Sidebar */
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {
+    float: none;
+    text-align: center;
+  }
+  div.content {
+    margin-left: 0;
+  }
+  .sidebar-icon {
+    padding-right: 0;
+  }
+  .sidebar-item {
+    padding: 0;
+  }
+
+  /* Pages */
+
+  div.statistics, div.settings, div.profile, div.logs, div.invoices {
+    margin-left: 0;
+    padding: 1px 16px;
+    height: auto;
+  }
+  div.tickets {
+    margin-left: 0;
+    padding: 1px 16px;
+    height: 100vh;
+  }
+
+  #profileForm input {
+    width: 100% !important;
+  }
+
+  .logsScroll {
+    height: 18rem;
+    overflow-y: scroll;
+  }
+
+  .categoryEditScroll {
+    height: 27rem;
+    overflow-y: scroll;
+  }
+
+  .invoicesScroll {
+    height: 27rem;
+    overflow-y: scroll;
+  }
+
+  .settingsScroll {
+    height: 20rem;
+  }
+
+  /* Other */
+
+  .select2-selection--multiple {
+    max-height: 14rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+}
+
+
+@media screen and (max-width: 576px) {
+  /* Sidebar */
+
+  .sidebar-icon {
+    padding-right: 0;
+  }
+  .sidebar-item {
+    padding: 0;
+  }
+
+  /* Pages */
+
+  div.tickets, div.logs, div.settings, div.invoices {
+    margin-left: 0;
+    padding: 1px 16px;
+  }
+  div.statistics {
+    margin-left: 0;
+    padding: 1px 16px;
+    height: auto;
+  }
+  div.profile {
+    margin-left: 0;
+    padding: 1px 16px;
+    height: auto;
+  }
+}

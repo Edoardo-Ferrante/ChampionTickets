@@ -1,0 +1,14 @@
+<html>
+  <%- await include("partials/head") %>
+  <body>
+    <div style="height: 100vh;" class="d-flex bg-darkblue px-1 text-center justify-content-center flex-column">
+      <h2 class="text-light fw-bold"><%= bot.language.dashboard.title %></h2>
+      <p class="mb-5 p-0 text-white"><%= bot.language.dashboard.not_found %></p>
+      <div class="d-flex justify-content-center">
+        <a href="/dashboard">
+          <button class="btn btn-primary btn-lg"><%= bot.language.dashboard.home %></button>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

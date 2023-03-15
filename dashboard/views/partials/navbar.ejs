@@ -1,0 +1,36 @@
+<div class="sidebar py-2 py-md-0 relative" style="z-index: 50;">
+  <div class="d-none d-md-flex justify-content-center">
+    <img height="128px" src="logo.png" alt="">
+  </div>
+  <nav class="navbar navbar-expand-md">
+    <div class="container-fluid">
+      <div class="d-flex d-md-none align-items-center w-100 mx-3">
+        <div class="d-md-none justify-content-center">
+          <img height="64px" src="logo.png" alt="">
+        </div>
+        <div class="navbar-toggle d-flex justify-content-end w-100 float-end collapsed d-md-none" data-bs-toggle="collapse" data-bs-target="#navbar">
+          <i class="fa-solid fa-bars fa-2x text-light" style="cursor: pointer;"></i>
+        </div>
+      </div>
+      <div class="collapse navbar-collapse navbar-nav" id="navbar">
+        <div class="d-flex flex-column d-md-block">
+          <div class="sidebar-item mx-2 mx-md-0"><a href="/dashboard" class="home logoEffect"><i class="sidebar-icon fa-solid fa-house"></i> <%= bot.language.dashboard.navbar?.home %></a></div>
+          <% if(bot.config.server.dashboard.modules.ticketing == true) { %>
+            <div class="sidebar-item mx-2 mx-md-0"><a href="/ticketing" class="ticketing logoEffect"><i class="sidebar-icon fa-solid fa-ticket"></i> <%= bot.language.dashboard.navbar?.ticketing %></a></div>
+          <% } %>
+          <% if(bot.config.server.dashboard.modules.settings.enabled == true) { %>
+            <div class="sidebar-item mx-2 mx-md-0"><a href="/settings" class="settings logoEffect"><i class="sidebar-icon fa-solid fa-screwdriver-wrench"></i> <%= bot.language.dashboard.navbar?.settings %></a></div>
+          <% } %> 
+          <% if(bot.config.server.dashboard.modules.logs == true) { %>
+            <div class="sidebar-item mx-2 mx-md-0"><a href="/logs" class="logs logoEffect"><i class="sidebar-icon fa-solid fa-floppy-disk"></i> <%= bot.language.dashboard.navbar?.logs %></a></div>
+          <% } %>
+          <% if(bot.config.server.dashboard.modules.invoicing == true) { %>
+            <div class="sidebar-item mx-2 mx-md-0"><a href="/invoicing" class="invoicing logoEffect"><i class="sidebar-icon fa-solid fa-file-invoice"></i> <%= bot.language.dashboard.navbar?.invoice %></a></div>
+          <% } %>
+          <div class="sidebar-item mx-2 mx-md-0"><a href="/profile" class="profile logoEffect"><i class="sidebar-icon fa-solid fa-circle-user"></i> <%= bot.language.dashboard.navbar?.profile %></a></div>
+          <div class="sidebar-item mx-2 mx-md-0"><a href="/logout" class="logout logoEffect"><i class="sidebar-icon fa-solid fa-right-from-bracket text-danger"></i> <%= bot.language.dashboard.navbar?.logout %></a></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

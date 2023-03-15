@@ -1,0 +1,395 @@
+# ________________________________________________
+#
+#       CHAMPION TICKETS COMMANDS FILE
+#
+# Here you can commands configuration like required role,
+# description, aliases and similar.
+#
+# ________________________________________________
+
+# Command Name
+new:
+  # Role(s) Required to run Command, leave empty for none
+  # User need at least one role from list.
+  roles: []
+  # Command Aliases, leave [] for none,
+  # Example:
+  # aliases: ["ticket"]
+  aliases: ["ticket"]
+  # Cooldown for Command in seconds
+  cooldown: 0
+  # Discord Permission Required to run Command, leave [] for none
+  # Example:
+  # permissions: ["Administrator"]
+  permissions: []
+  # Command Description
+  description: "Create Ticket"
+  # Command Usage
+  usage: "new"
+  # Whether Response of Command is only visible to User who run command (Only Slash Commands!)
+  # Not Present on All Commands!
+  ephemeral: false
+  # Is Command Enabled
+  enabled: true
+add:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageMessages"]
+  description: "Add User to Ticket"
+  usage: "add [@User]"
+  enabled: true
+remove:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageMessages"]
+  description: "Remove User from Ticket"
+  usage: "remove [@User]"
+  enabled: true
+close:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: []
+  description: "Close Ticket"
+  usage: "close"
+  enabled: true
+reask:
+  roles: []
+  aliases: ["ManageMessages"]
+  cooldown: 0
+  permissions: []
+  description: "Restart Ticket Questions and start process again"
+  usage: "reask"
+  enabled: true
+transcriptcode:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageMessages"]
+  description: "Get Web Transcript Code from Ticket ID"
+  usage: "transcriptcode [Transcript ID]"
+  enabled: true
+ping:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: []
+  description: "Get Bot Ping"
+  usage: "ping"
+  enabled: true
+help:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: []
+  description: "View Commands"
+  usage: "help [Category/Command]"
+  ephemeral: false
+  enabled: true
+id:
+  roles: []
+  aliases: ["getid"]
+  cooldown: 0
+  permissions: ["ManageMessages"]
+  description: "Get Channel/User/Role ID"
+  usage: "id [Channel/@User/Role]"
+  ephemeral: false
+  enabled: true
+suggest:
+  roles: []
+  aliases: ["suggestion"]
+  cooldown: 0
+  permissions: []
+  description: "Create Suggestion"
+  usage: "suggest [Suggestion]"
+  enabled: true
+review:
+  roles: []
+  aliases: ["addreview"]
+  cooldown: 0
+  permissions: []
+  description: "Review User"
+  usage: "review [@User] [Rating 1-5] [Comment]"
+  enabled: true
+getreview:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: []
+  description: "Get Review Info"
+  usage: "getreview [@User] [Review ID]"
+  ephemeral: false
+  enabled: true
+profile:
+  roles: []
+  aliases: ["stats", "reviews"]
+  cooldown: 0
+  permissions: []
+  description: "View User Profile"
+  usage: "profile [@User]"
+  ephemeral: false
+  enabled: true
+clientprofile:
+  roles: []
+  aliases: ["clientinfo"]
+  cooldown: 0
+  permissions: []
+  description: "View Client's Profile"
+  usage: "clientprofile [@User]"
+  ephemeral: false
+  enabled: true
+edit:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageGuild"]
+  description: "Edit User/Channel Data"
+  usage: "edit [@User/#Channel]
+    [addorder/removeorder/deletereview/addbalance/removebalance || commprice]
+    [Value (Amount, Review ID..)]"
+  ephemeral: false
+  enabled: true
+paypal:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageMessages"]
+  description: "Create PayPal Link for Payment"
+  usage: "paypal [@User] [Mail] [Amount] [Service/Comment]"
+  enabled: true
+invoice:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageMessages"]
+  description: "Create PayPal Invoice for Mentioned User"
+  usage: "invoice [@User] [Amount] [Service/Comment]"
+  enabled: true
+getinvoice:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageMessages"]
+  description: "Get Information about Invoice"
+  usage: "getinvoice [Invoice ID]"
+  enabled: true
+claim:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageMessages"]
+  description: "Claim Ticket"
+  usage: "claim"
+  enabled: true
+assign:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageMessages"]
+  description: "Assign Ticket to User"
+  usage: "assign [@User]"
+  enabled: true
+counters:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageGuild"]
+  description: "Create Stats Counters"
+  usage: "counters"
+  enabled: true
+status:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageMessages"]
+  description: "Change your Status to Away/Available"
+  usage: "status"
+  enabled: true
+panel:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageGuild"]
+  description: "Create Ticket Panel"
+  usage: "panel [Category ID (If want Separate Panels)]"
+  enabled: true
+notes:
+  roles: []
+  aliases: ["addnote", "note"]
+  cooldown: 0
+  permissions: ["ManageMessages"]
+  description: "Add Note to Ticket Channel"
+  usage: "note [Text]"
+  enabled: true
+channelinfo:
+  roles: []
+  aliases: ["ticketinfo"]
+  cooldown: 0
+  permissions: ["ManageMessages"]
+  description: "Informations about Ticket Channel"
+  usage: "channelinfo"
+  ephemeral: false
+  enabled: true
+setprofile:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageMessages"]
+  description: "Set PayPal, Available Hours & Bio which are shown at your Profile"
+  usage: "setprofile [paypal | hours | bio] [Value]"
+  enabled: true
+changecategory:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageMessages"]
+  description: "Change Category of Ticket"
+  usage: "changecategory [New Category Name/ID]"
+  ephemeral: false
+  enabled: true
+crypto:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageMessages"]
+  description: "Create QR Code for Payment"
+  usage: "crypto [@User] [Crypto] [Address] [Amount (Currency from config.yml)]
+    [Service/Comment]"
+  enabled: true
+quote:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageMessages"]
+  description: "Make Quote for this Order"
+  usage: "quote [Price] [Time Frame] [Note]"
+  ephemeral: false
+  enabled: true
+balance:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageMessages"]
+  description: "Get your or someone else's balance"
+  usage: "balance [@User]"
+  ephemeral: false
+  enabled: true
+withdraw:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageMessages"]
+  description: "Request money withdraw"
+  usage: "withdraw [Amount]"
+  ephemeral: false
+  enabled: true
+mark:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageMessages"]
+  description: "Mark this Commission as COMPLETED"
+  usage: "mark [COMPLETED]"
+  ephemeral: false
+  enabled: true
+calculate:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: []
+  description: "Calculate Math Expression"
+  usage: "calculate [Expression]"
+  ephemeral: false
+  enabled: true
+getproduct:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: []
+  description: "Download Product using ID"
+  usage: "getproduct [Product ID]"
+  ephemeral: false
+  enabled: true
+products:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: []
+  description: "Get list of products available"
+  usage: "products"
+  enabled: true
+setpriority:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: ["ManageGuild"]
+  description: "Set Priority for Ticket Channel"
+  usage: "setpriority [#Channel] [low / normal / high / urgent]"
+  ephemeral: false
+  enabled: true
+prioritylist:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: []
+  description: "List of Tickets with High or Urgent Priorities"
+  usage: "prioritylist"
+  ephemeral: false
+  enabled: true
+sellixconnect:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: []
+  description: "Verify yourself as Sellix.io Customer"
+  usage: "sellixconnect [Order ID]"
+  ephemeral: false
+  enabled: true
+sellixlicense:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: []
+  description: "Get Informations About Sellix Licence (Order ID)"
+  usage: "sellixlicence [Order ID]"
+  ephemeral: false
+  enabled: true
+sellixproduct:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: []
+  description: "View Sellix Product Details"
+  usage: "sellixproduct [Product Unique ID]"
+  ephemeral: false
+  enabled: true
+tebexconnect:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: []
+  description: "Verify yourself as Tebex Customer"
+  usage: "tebexconnect [Transaction ID]"
+  ephemeral: false
+  enabled: true
+cstoreconnect:
+  roles: []
+  aliases: []
+  cooldown: 0
+  permissions: []
+  description: "Verify yourself as CraftingStore Customer"
+  usage: "cstore [Transaction ID]"
+  ephemeral: false
+  enabled: true
+eval:
+  roles: []
+  aliases: []
+  # For this Command you also need to be
+  # added into 'eval' field in config.yml
+  cooldown: 0
+  permissions: []
+  description: "Evaulate JS Code"
+  usage: "eval [JS Code]"
+  enabled: true
